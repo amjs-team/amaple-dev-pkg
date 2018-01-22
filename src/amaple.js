@@ -151,7 +151,7 @@ function isEmpty(object) {
 	#Warning: 此函数会改变继承参数
 	
 	参数说明：
-	当继承参数类型为array时，被继承参数可以是任何类型，当被继承参数为array或object时会将内部全部属性继承下来。参数只会继承不重复的参数
+	当继承参数类型为array时，被继承参数可以是任何类型，当被继承参数��array或object时会将内部全部属性继承下来。参数只会继承不重复的参数
 	当继承参数类型为object或function时，被继承参数只能是object，如果被继承参数中有其他类型参数将会直接被忽略。相同键的属性将会被覆盖
 	
 	eg:
@@ -617,7 +617,7 @@ var TYPE_COMPONENT = 0;
 var TYPE_PLUGIN = 1;
 
 // 重复利用的常量
-// 样式值为数字时不添加单位“px”的样式名
+// 样式值为数字时不添加单位“px”��样式名
 var noUnitHook = ["z-index"];
 
 // 直接赋值的元素属性，如果不在此的属性将会使用setAttribute设置属性
@@ -1659,7 +1659,7 @@ function optimizeSteps(patches) {
         }
 
         // 判断是否分解进行合并，依据为合并后至少不会更多步骤
-        // 合并项分为相同跨度的项、向前遍历可合并的项
+        // 合并项���为相同跨度的项、向前遍历可合并的项
         // +1是因为需算上当前合并项，但在eliminates中并没有算当前合并项
         if (optimizeItems.length <= mergeItems.eliminates.length + mergeItems.previous.length + 1) {
             Array.prototype.splice.apply(patches, [patches.indexOf(lastStep) + 1, 0].concat(optimizeItems));
@@ -1874,7 +1874,7 @@ function diffEvents(newVNode, oldVNode, nodePatcher) {
 
     Return Type:
     Number
-    查找的node在children数组中的位置，如果没有找打则返回-1
+    查找的node在children数���中的位置，如果没有找打则返回-1
 
     Description:
     获取查找的node在children数组中的位置，如果没有找打则返回-1
@@ -7066,7 +7066,7 @@ var http = {
  	Promise对象
  
  	Description:
- 	ajax GET请求，内部调用request方法实现
+ 	ajax GET请求���内部调用request方法实现
  
  	URL doc:
  	http://amaple.org/######
@@ -8175,7 +8175,7 @@ extend(Component.prototype, {
             subElements = componentConstructor.initSubElements(componentVNode, subElementNames),
             tmpl = new Tmpl(componentVm, this.depComponents, this);
 
-        // 先清空后再添加上去进行对比
+        // 先清空后再添加上去进��对比
         // 避免造成if、else-if、for指令在对比时出错
         // vfragmentBackup.clear ();
         // clear ( vfragmentBackup.node );
@@ -8596,7 +8596,7 @@ var _for = {
                 if (val.nodeType) {
                     itemNode = val;
 
-                    // 当if和for指令同时使用在一个元素上，且在改变数组重新遍历前改变过if的条件时
+                    // 当if和for指令同时使用在一个元��上，且在改变数组重新遍历前改变过if的条件时
                     // nodeMap中的元素非显示的元素，需遍历conditionElems获取当前显示的元素
                     if (itemNode.conditionElems && !itemNode.parent) {
                         foreach(itemNode.conditionElems.concat(itemNode.conditionElems[0].replacement), function (conditionElem) {

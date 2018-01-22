@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "description": "A package for quickly developing Amaple application.",
   "main": "index.js",
-  "dependencies": {
-    "amaple": "^1.0.0"
-  },
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-livereload": "^3.8.1",
