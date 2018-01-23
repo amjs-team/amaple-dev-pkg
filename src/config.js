@@ -20,9 +20,8 @@ am.startRouter ( {
 	// [注意] 调用route()前必须调用module()定义一个模块
 	routes : function (router) {
 		router.module()
-		.route(["/", "/table"], "index/table")
-		.route("/login", "login/login", function (childRouter) {
-			childRouter.module().route(":sub_sera", "login/sub_sera");
+		.route("/", "index/index", function (childRouter) {
+			childRouter.module ().route ("", "footer");
 		});
 
 		// 404错误路径

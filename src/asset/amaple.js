@@ -6,7 +6,7 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
-	(global.amaple = factory());
+	(global.am = factory());
 }(this, (function () { 'use strict';
 
 // 路由模式，启动路由时可进行模式配置
@@ -5039,7 +5039,7 @@ var hashHistory = {
 			if (!locationGuide) {
 				var path = _this.getPathname(),
 				    param = {},
-				    structure = startRouter.matchRoutes(path, param);
+				    structure = Router.matchRoutes(path, param);
 
 				locationGuide = {
 					structure: structure,
@@ -5523,7 +5523,7 @@ function parseModuleAttr(moduleString, parses) {
 	// 匹配出module标签内的属性
 	while (!rend.test(moduleString)) {
 		attrMatch = rmoduleAttr.exec(moduleString);
-		if (attrMatch) {
+		if (attrMatch && attrMatch[2]) {
 			parses.attrs[attrMatch[2]] = attrMatch[3] || attrMatch[4] || "";
 			moduleString = moduleString.substr(attrMatch[0].length);
 		} else {

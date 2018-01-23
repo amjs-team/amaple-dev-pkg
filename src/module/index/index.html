@@ -1,0 +1,141 @@
+<module :title="Welcome to Amaple.js">
+	
+	<!-- 模块页面模板 -->
+	<template>
+		<div class="am-header">
+			<a href="#" class="button">查看教程</a>
+		</div>
+		<div class="am-body">
+			<div class="block">
+				<h1 class="center">Hello Amaple用户</h1>
+				<h3 class="center" id="congratulation">恭喜你成功配置并启动Amaple.js，马上开始你的表演吧！</h3>
+			</div>
+			<div class="block">
+				<h3 class="center" id="notice-title">开发者须知</h3>
+				<ul id="notice-content">
+					<li :for="item in notices">
+						<img src="../../asset/image/{{ item.listImg }}">
+						<div id="text">
+							<span :if="/win/i.test (platform) && item.contentWin">{{ item.contentWin }}</span>
+							<span :else-if="/mac/i.test (platform) && item.contentMac">{{ item.contentMac }}</span>
+							<span :else>{{ item.content }}</span>
+							<ul id="categories" :if="item.categories">
+								<li :for="category in item.categories">{{ category }}</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="am-footer" :module></div>
+	</template>
+	<style scoped>
+		.am-header {
+			height: 277px;
+			background: url(../../asset/image/amaple-header.png) no-repeat;
+			background-size: cover;
+			overflow: hidden;
+		}
+		.button {
+			width: 136px;
+			display: block;
+			margin: 0 auto;
+			margin-top: 200px;
+			padding: 10px 0;
+			text-align: center;
+			border-radius: 6px;
+			color: #ffffff;
+
+			background: #fc9c40;
+			background: -moz-linear-gradient(left, #fa5a33 0%, #fc9c40 100%);
+			background: -webkit-linear-gradient(left, #fa5a33 0%, #fc9c40 100%);
+			background: -o-linear-gradient(left, #fa5a33 0%, #fc9c40 100%);
+			background: -ms-linear-gradient(left, #fa5a33 0%, #fc9c40 100%);
+			background: linear-gradient(to right, #fa5a33 0%, #fc9c40 100%);
+
+			transition: box-shadow 0.5s;
+			-moz-transition: box-shadow 0.5s;
+			-webkit-transition: box-shadow 0.5s;
+			-o-transition: box-shadow 0.5s;
+		}
+		.button:hover {
+			box-shadow: 3px 3px 10px #f1a49d;
+		}
+		.am-body {
+			
+		}
+		.center {
+			text-align: center;
+		}
+		.block {
+			margin: 40px 0;
+		}
+		h1 {
+			color: #faa564;
+		}
+		#congratulation {
+			color: #f5ce7a;
+			margin-top: 10px;
+		}
+		#notice-title {
+			color: #de7c59;
+		}
+		#notice-content {
+			width: 54%;
+			margin: 0 auto;
+			color: #928c85;
+		}
+		#notice-content > li {
+			margin: 20px 0;
+		}
+		#notice-content li img {
+			float: left;
+		}
+		#notice-content #text {
+			width: 95%;
+			margin-left: 12px;
+			display: inline-block;
+			line-height: 26px;
+		}
+		#notice-content #categories {
+			list-style-type: square;
+			margin-left: 20px;
+		}
+		.am-footer {
+			margin-top: 50px;
+		}
+	</style>
+	
+
+	<!-- 此模板对应的数据 -->
+	<script>
+		new am.Module ({
+			init: function () {
+				return {
+					platform: window.navigator.platform,
+					notices: [
+						{
+							listImg: "list-1.png",
+							content: "开发包已为你在src目录下搭建好文件结构，你可以将对应类型的代码文件保存到对应目录下：",
+							categories: [
+								"asset目录：用于存放图片、通用依赖js和css等资源文件；",
+								"module目录：用于存放模块相关文件；",
+								"module目录：用于存放模块相关文件；",
+								"plugin目录：用于存放插件相关文件，其中的amaple、amd、iife目录用于区分存放各类插件。"
+							]
+						},
+						{
+							listImg: "list-2.png",
+							contentWin: "此后每次需开发时，你可以直接在你的windows上运行开发包下的“start_win.bat”即可自动启动本地Web服务器。",
+							contentMac: "此后每次需开发时，你可以直接在你的mac上运行开发包下的“start_macOS”即可自动启动本地Web服务器。"
+						},
+						{
+							listImg: "list-3.png",
+							content: "Nodejs环境只用于启动本地Web服务器，对于不熟悉Nodejs构建工具的开发者可忽略src外的其他文件，待开发完成后直接将src目录下的代码拷贝到生产环境即可。"
+						}
+					]
+				};
+			}
+		});
+	</script>
+</module>
