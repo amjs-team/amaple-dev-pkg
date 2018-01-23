@@ -1,7 +1,7 @@
 const 
 	https = require ("https"),
 	fs = require ("fs"),
-	dist = require ("path").resolve ( __dirname, "../src" ) + "/amaple.js";
+	dist = require ("path").resolve ( __dirname, "../src/asset" ) + "/amaple.js";
 
 // 请求下载地址
 https.get ("https://unpkg.com/amaple", (req,res) => {
