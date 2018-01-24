@@ -1,6 +1,6 @@
 /**
- * AmapleJS v1.0.0
- * (c) 2017-2018 JOU http://amaple.org
+ * AmapleJS v1.0.3
+ * (c) 2018-2018 JOU http://amaple.org
  * License: MIT
  */
 (function (global, factory) {
@@ -151,7 +151,7 @@ function isEmpty(object) {
 	#Warning: 此函数会改变继承参数
 	
 	参数说明：
-	当继承参数类型为array时，被继承参数可以是任何类型，当被继承参数��array或object时会将内部全部属性继承下来。参数只会继承不重复的参数
+	当继承参数类型为array时，被继承参数可以是任何类型，当被继承参数为array或object时会将内部全部属性继承下来。参数只会继承不重复的参数
 	当继承参数类型为object或function时，被继承参数只能是object，如果被继承参数中有其他类型参数将会直接被忽略。相同键的属性将会被覆盖
 	
 	eg:
@@ -492,7 +492,7 @@ var event$1 = {
 	缓存内容如下：
 	1. 插件对象缓存
 	2. 元素驱动器缓存
-	3. 页面跳转与状态切换时的缓存，开启缓存后，页面跳转数据将会被缓存，再次调用相同地址时将使用缓存更新页面以提高响应速度，实时性较高的页面建议关闭缓存。
+	3. 页面跳转与状态切换时的缓存，开启缓存后，页面跳转数据将会被缓存，再次调用相同地址时将使用缓存更新页面以提高响应速度���实时性较高的页面建议关闭缓存。
 
 	URL doc:
 	http://amaple.org/######
@@ -617,7 +617,7 @@ var TYPE_COMPONENT = 0;
 var TYPE_PLUGIN = 1;
 
 // 重复利用的常量
-// 样式值为数字时不添加单位“px”��样式名
+// 样式值为数字时不添加单位“px”的样式名
 var noUnitHook = ["z-index"];
 
 // 直接赋值的元素属性，如果不在此的属性将会使用setAttribute设置属性
@@ -1659,7 +1659,7 @@ function optimizeSteps(patches) {
         }
 
         // 判断是否分解进行合并，依据为合并后至少不会更多步骤
-        // 合并项���为相同跨度的项、向前遍历可合并的项
+        // 合并项分��相同跨度的项、向前遍历可合并的项
         // +1是因为需算上当前合并项，但在eliminates中并没有算当前合并项
         if (optimizeItems.length <= mergeItems.eliminates.length + mergeItems.previous.length + 1) {
             Array.prototype.splice.apply(patches, [patches.indexOf(lastStep) + 1, 0].concat(optimizeItems));
@@ -1874,7 +1874,7 @@ function diffEvents(newVNode, oldVNode, nodePatcher) {
 
     Return Type:
     Number
-    查找的node在children数���中的位置，如果没有找打则返回-1
+    查找的node在children数组��的位置，如果没有找打则返回-1
 
     Description:
     获取查找的node在children数组中的位置，如果没有找打则返回-1
@@ -1955,7 +1955,7 @@ function diffChildren(newChildren, oldChildren, nodePatcher) {
         oldNodeClassification.push(obj);
         foreach(oldChildren, function (oldChild) {
 
-            // key为undefined的分类
+            // key为undefined的分���
             if (keyType === 0) {
                 if (oldChild.key === undefined) {
                     obj.children.push(oldChild);
@@ -5660,7 +5660,7 @@ function parseStyle(moduleString, parses) {
 		} else {
 
 			// 去除所有标签间的空格
-			style = removeCssBlank(styleMatch[1]);
+			parses.style = removeCssBlank(styleMatch[1]).trim();
 		}
 	} else {
 		parses.style = "";
@@ -5689,7 +5689,7 @@ function parseScript(moduleString, scriptPaths, scriptNames, parses) {
 	    rimport = /\s*(?:(?:(?:var|let|const)\s+)?(.+?)\s*=\s*)?import\s*\(\s*["'](.*?)["']\s*\)(?:\s*[,;])?/g,
 	    rcomponent = /\s*(?:(?:(?:var|let|const)\s+)?(.+?)\s*=\s*)?am\s*\.\s*class\s*\(\s*["'`].+?["'`]\s*\)\s*\.\s*extends\s*\(\s*am\s*\.\s*Component\s*\)/,
 	    rhtmlComment = /<!--(.*?)-->/g,
-	    rmoduleDef = /new\s*am\s*\.\s*Module\s*\(/,
+	    rmoduleDef = /new\s*am\s*\.\s*Module\s*\(([^\s)])?/,
 	    raddComponents = new RegExp(rmoduleDef.source + "\\s*\\{"),
 	    scriptMatch = rscript.exec(moduleString);
 
@@ -5739,8 +5739,16 @@ function parseScript(moduleString, scriptPaths, scriptNames, parses) {
 			}
 		}
 
-		parses.script = parses.script.replace(rmoduleDef, function (match) {
-			return match + "args.moduleNode,";
+		parses.script = parses.script.replace(rmoduleDef, function (match, rep) {
+			var replacement = "";
+			if (rep) {
+				replacement = match.replace(rep, "args.moduleNode," + rep);
+			}
+			else {
+				replacement = match + "args.moduleNode";
+			}
+
+			return replacement;
 		});
 	} else {
 		parses.script = "";
@@ -6225,7 +6233,7 @@ extend(AmXMLHttpRequest.prototype, {
  
  	Return Type:
  	String
- 	所有返回头信息
+ 	所有返回头���息
  
  	Description:
  	获取所有返回头信息
@@ -7066,7 +7074,7 @@ var http = {
  	Promise对象
  
  	Description:
- 	ajax GET请求���内部调用request方法实现
+ 	ajax GET请求，内部调用request方法实现
  
  	URL doc:
  	http://amaple.org/######
@@ -7923,7 +7931,7 @@ var componentConstructor = {
             component.lifeCycle[cycleName] = function () {
                 cycleFunc.apply(component, cache.getDependentPlugin(cycleFunc));
 
-                // 钩子函数调用
+                // 钩子函数���用
                 hookFn();
             };
         });
@@ -8175,7 +8183,7 @@ extend(Component.prototype, {
             subElements = componentConstructor.initSubElements(componentVNode, subElementNames),
             tmpl = new Tmpl(componentVm, this.depComponents, this);
 
-        // 先清空后再添加上去进��对比
+        // 先清空��再添加上去进行对比
         // 避免造成if、else-if、for指令在对比时出错
         // vfragmentBackup.clear ();
         // clear ( vfragmentBackup.node );
@@ -8596,7 +8604,7 @@ var _for = {
                 if (val.nodeType) {
                     itemNode = val;
 
-                    // 当if和for指令同时使用在一个元��上，且在改变数组重新遍历前改变过if的条件时
+                    // 当if和for指令同��使用在一个元素上，且在改变数组重新遍历前改变过if的条件时
                     // nodeMap中的元素非显示的元素，需遍历conditionElems获取当前显示的元素
                     if (itemNode.conditionElems && !itemNode.parent) {
                         foreach(itemNode.conditionElems.concat(itemNode.conditionElems[0].replacement), function (conditionElem) {
@@ -8874,6 +8882,24 @@ var module$2 = {
     static: true,
 
     /**
+        before ()
+    
+        Return Type:
+        void
+    
+        Description:
+        更新视图前调用（即update方法调用前调用）
+        此方法只会在初始化挂载数据时调用一次
+    
+        URL doc:
+        http://amaple.org/######
+    */
+    before: function before() {
+        this.moduleName = this.node.attr(amAttr.module);
+    },
+
+
+    /**
         update ( moduleName: String )
     
         Return Type:
@@ -8887,7 +8913,7 @@ var module$2 = {
     */
     update: function update(moduleName) {
         if (Structure.currentRender && type$1(moduleName) === "string") {
-            Structure.saveSubModuleNode(this.node);
+            Structure.saveSubModuleNode(this.node, this.moduleName);
         }
     }
 };
@@ -9574,7 +9600,7 @@ function Module(moduleElem, vmData) {
 
 	newClassCheck(this, Module);
 
-	var developMode = moduleElem instanceof VNode ? DEVELOP_SINGLE : DEVELOP_COMMON;
+	var devMode = moduleElem instanceof VNode ? DEVELOP_SINGLE : DEVELOP_COMMON;
 	var parent = void 0,
 	    moduleElemBackup = void 0;
 
@@ -9583,12 +9609,16 @@ function Module(moduleElem, vmData) {
 		check(moduleElem.nodeType).be(1, 3, 11).ifNot("Module", "module参数可传入模块元素的:module属性值或直接传入需挂在模块元素").do();
 		check(vmData).type("object").check(vmData.init).type("function").ifNot("Module", "vmData参数必须为带有init方法的的object").do();
 	} else {
-		throw argErr("Module", "module参数可传入模块元素的:module属性值或直接传入需挂在模块元素");
+		if (devMode === DEVELOP_COMMON) {
+			throw argErr("Module", "没有指定moduleElem参数，你可直接传入需挂载的模块DOM元素");
+		} else if (devMode === DEVELOP_SINGLE) {
+			throw argErr("Module", "没有指定moduleElem参数");
+		}
 	}
 
 	/////////////////////////////////
 	/////////////////////////////////
-	if (developMode === DEVELOP_SINGLE && Structure.currentPage) {
+	if (devMode === DEVELOP_SINGLE && Structure.currentPage) {
 
 		// 只有单页模式时Structure.currentPage会有值
 		// 单页模式时，使用Structure.getCurrentRender().parent.module.state获取父级的vm
@@ -9650,7 +9680,7 @@ function Module(moduleElem, vmData) {
 
 	/////////////////////////////////
 	/////////////////////////////////
-	if (developMode === DEVELOP_COMMON) {
+	if (devMode === DEVELOP_COMMON) {
 
 		// 普通模式下才会在Module内对比新旧vnode计算出差异
 		// 并根据差异更新到实际dom中
@@ -10456,7 +10486,7 @@ extend(Structure, {
 
 
     /**
-        saveSubModuleNode ( vnode: Object )
+        saveSubModuleNode ( vnode: Object, moduleName: String )
     
         Return Type:
         void
@@ -10467,9 +10497,9 @@ extend(Structure, {
         URL doc:
         http://amaple.org/######
     */
-    saveSubModuleNode: function saveSubModuleNode(vnode) {
+    saveSubModuleNode: function saveSubModuleNode(vnode, moduleName) {
         foreach(Structure.currentRender.children, function (child) {
-            if (child.name === (vnode.attr(amAttr.module) || "default") && !child.moduleNode) {
+            if (child.name === (moduleName || "default") && !child.moduleNode) {
                 child.moduleNode = vnode;
                 return false;
             }

@@ -12,7 +12,7 @@ https.get ("https://unpkg.com/amaple", (req,res) => {
 
     req.on ("end", () => {
     	const version = (js.match(/@([0-9.]+)$/) || ["", "1.0.1"])[1];
-    	https.get (`https://unpkg.com/amaple@${version}/dist/amaple.${version}.js`, req => {
+    	https.get (`https://unpkg.com/amaple@${version}/dist/amaple.umd.js`, req => {
     		js = "";
     		req.on ("data", data => {
     		    js += data;

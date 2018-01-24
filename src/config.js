@@ -21,7 +21,7 @@ am.startRouter ( {
 	routes : function (router) {
 		router.module()
 		.route("/", "index/index", function (childRouter) {
-			childRouter.module ().route ("", "footer");
+			childRouter.module ("footer").route ("", "footer");
 		});
 
 		// 404错误路径
